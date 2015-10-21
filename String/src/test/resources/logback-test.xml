@@ -1,0 +1,40 @@
+<configuration scan="true" scanPeriod="30 minutes">
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+         %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+      </Pattern>
+    </layout>
+  </appender>
+
+   <!--Batch Job Daily rolling file appender -->
+  <appender name="JobDailyRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+     <file>algorithms.log</file>
+     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">    
+          <!-- daily rollover -->
+          <fileNamePattern>algorithms-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+         
+          <timeBasedFileNamingAndTriggeringPolicy
+                   class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+           
+              <!-- or whenever the file size reaches 100MB -->
+              <maxFileSize>100MB</maxFileSize>
+           </timeBasedFileNamingAndTriggeringPolicy>
+     </rollingPolicy>   
+        
+     <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+     </encoder>
+  </appender>
+  
+  <logger name="JobDailyRollingFile" additivity="false">
+       <level value="debug" />
+       <appender-ref ref="JobDailyRollingFile"/>   
+   </logger>
+  
+  <root>
+     <level value="debug" />
+     <appender-ref ref="STDOUT"/>
+     <appender-ref ref="JobDailyRollingFile"/>
+  </root>
+</configuration>

@@ -1,0 +1,7 @@
+1 动态编程和基因序列比对
+   http://www.ibm.com/developerworks/cn/java/j-seqalign/
+   http://www.ibm.com/developerworks/library/j-seqalign/
+
+2 http://www.krishnabharadwaj.info/dynamic-programming/
+
+3 http://mytestpjt.googlecode.com/svn/trunk/ASAssembly/src/com/mhhe/clrs2e/  --代码不少
