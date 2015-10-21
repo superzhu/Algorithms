@@ -24,15 +24,3 @@
 
 10 https://github.com/yuzhangcmu/LeetCode ---好的算法总结
 
-A>create a new repository on the command line
-echo # Algorithms >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/superzhu/Algorithms.git
-git push -u origin master
-
-B>…or push an existing repository from the command line
- git remote add origin https://github.com/superzhu/Algorithms.git
-git push -u origin master
-
