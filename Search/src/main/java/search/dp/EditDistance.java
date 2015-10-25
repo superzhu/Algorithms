@@ -2,6 +2,7 @@ package search.dp;
 
 /**
  * http://www.javacodegeeks.com/2014/03/easy-to-understand-dynamic-programming-edit-distance.html
+ * http://www.programcreek.com/2013/12/edit-distance-in-java/ 
  */
 public class EditDistance {
     public int editDistance(String word1, String word2) {
