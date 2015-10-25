@@ -1,1 +1,1 @@
-Project for self-learning algorithms
+Project for self-learning algorithms.
