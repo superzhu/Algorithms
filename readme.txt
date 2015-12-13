@@ -24,3 +24,6 @@
 
 10 https://github.com/yuzhangcmu/LeetCode ---好的算法总结
 
+11 http://codesays.com/solutions-to-training-by-codility/
+   https://github.com/acprimer/Codility/blob/master/src/Lesson4/Triangle.java
+

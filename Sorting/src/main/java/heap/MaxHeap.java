@@ -107,4 +107,11 @@ public class MaxHeap<E extends Comparable<? super E>> {
     public E getRoot() {
         return Heap[0];
     }
+
+    public static void main(String[] args) {
+        Integer[] hh = {1,2,3,4,5};
+
+        MaxHeap<Integer> maxHeap = new MaxHeap<>(hh,5,16);
+
+    }
 }

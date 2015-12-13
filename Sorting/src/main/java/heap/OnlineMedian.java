@@ -40,13 +40,13 @@ public class OnlineMedian {
             }
 
             // @exclude
-            globalResult.add((minHeap.size() == maxHeap.size()
+           /* globalResult.add((minHeap.size() == maxHeap.size()
                     ? 0.5 * (minHeap.peek() + maxHeap.peek())
                     : minHeap.peek()));
             // @include
             System.out.println(minHeap.size() == maxHeap.size()
                     ? 0.5 * (minHeap.peek() + maxHeap.peek())
-                    : minHeap.peek());
+                    : minHeap.peek());*/
         }
     }
     // @exclude
