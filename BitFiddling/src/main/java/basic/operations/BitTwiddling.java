@@ -49,6 +49,17 @@ public class BitTwiddling {
         //Turn on the rightmost 0-bit -- y = x | (x+1)
     }
 
+    public int swapBits(int n, int i, int j) {
+        int a = (n >> i) & 1;
+        int b = (n >> j) & 1;
+
+        if ((a ^ b) != 0) {
+            return n ^= (1 << i) | (1 << j);
+        }
+
+        return n;
+    }
+
     /**
      * To get the number of 1s in the binary representation of an integer
      */

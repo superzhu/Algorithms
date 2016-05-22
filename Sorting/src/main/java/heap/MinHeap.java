@@ -67,7 +67,7 @@ public class MinHeap<E extends Comparable<? super E>> {
         while (!isLeaf(pos)) {
             int j = leftchild(pos);
             if ((j<(n-1)) && (Heap[j].compareTo(Heap[j+1]) > 0))
-                j++; // j is now index of child with greater value
+                j++; // j is now index of child with lesser value
             if (Heap[pos].compareTo(Heap[j]) <= 0) return;
             DSutil.swap(Heap, pos, j);
             pos = j;  // Move down

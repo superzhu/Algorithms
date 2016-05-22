@@ -24,5 +24,10 @@
 
 10 https://github.com/yuzhangcmu/LeetCode ---好的算法总结
 
+<<<<<<< HEAD
 11 http://www.lifeincode.net/programming/leetcode-distinct-subsequences-java/
+=======
+11 http://codesays.com/solutions-to-training-by-codility/
+   https://github.com/acprimer/Codility/blob/master/src/Lesson4/Triangle.java
+>>>>>>> df74e3b55d58f7aab9c53502c320d1effd2fbdd4
 
