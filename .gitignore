@@ -1,5 +1,5 @@
 .idea
-.idea/workspace.xml
+.idea/*.xml
 target/
 *.iml
 *.lock
