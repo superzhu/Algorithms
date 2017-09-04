@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <!-- Configure the HA Name and Address Attributes -->
+  <property>
+     <name>dfs.nameservices</name>
+     <value>apmcluster</value>
+     <description>Logical name for the HA nameservice</description>
+  </property>
+  <property>
+    <name>dfs.ha.namenodes.apmcluster</name>
+    <value>nn1,nn2</value>
+    <description>Unique identifiers for each NameNode
+        in the nameservice</description>
+  </property>
+  <property>
+    <name>dfs.namenode.shared.edits.dir</name>
+   <value>qjournal://apm-datanode01:8485;apm-datanode02:8485;apm-datanode07:8485/apmcluster</value>
+    <description>URIs to identify the set of JournalNodes</description>
+  </property>
+  <property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/pang/data/hdfs/jn</value>
+    <description>The directory where the journal edit files are stored</description>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-address.apmcluster.nn1</name>
+    <value>apm-namenode1:8020</value>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-address.apmcluster.nn2</name>
+    <value>apm-namenode2:8020</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address.apmcluster.nn1</name>
+    <value>apm-namenode1:50070</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address.apmcluster.nn2</name>
+    <value>apm-namenode2:50070</value>
+  </property>
+  <property>
+     <name>dfs.client.failover.proxy.provider.apmcluster</name>
+     <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+     <description>The Java class that HDFS clients use to contact the Active NameNode</description>
+  </property>
+
+     <!-- Configure the HA Manual Failover Attributes -->
+  <property>
+     <name>dfs.ha.fencing.methods</name>
+     <value>sshfence
+           shell(/bin/true)
+     </value>
+  </property>  
+  <property>
+     <name>dfs.ha.fencing.ssh.private-key-files</name>
+     <value>/home/coupang/.ssh/id_rsa</value>
+  </property>
+  <property>
+    <name>dfs.ha.fencing.ssh.connect-timeout</name>
+    <value>30000</value>
+    <description> SSH connection timeout, in milliseconds, 
+      to use with the builtin sshfence fencer (30 seconds)
+    </description>
+  </property>
+
+    <!-- Configure the HA Automatic Failover Attributes -->
+  <property>
+   <name>dfs.ha.automatic-failover.enabled</name>
+   <value>true</value>
+ </property>
+
+  <property>
+    <name>dfs.replication</name>
+    <value>3</value>
+  </property>
+  <property>
+    <name>dfs.blocksize</name>
+    <value>134217728</value>
+    <description>Block Size 128 MB</description>
+  </property>
+  <property>
+    <name>dfs.datanode.du.reserved</name>
+    <value>2147483648</value>
+    <description>Reserved space in bytes per volume. Reserve 2G space</description>
+  </property>
+   <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:///pang/data/hdfs/nn</value>
+    <description>This parameter specifies where in the local file system
+       the NameNode stores the fsimage file</description>
+  </property>
+  <property>
+    <name>dfs.namenode.edits.dir</name>
+    <value>file:///pang/data/hdfs/nn</value>
+    <description>This parameter specifies where in the local file system
+       the NameNode stores the transaction(edits) file</description>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///pang/data/hdfs/dn</value>
+    <description>This parameter specifies where in the local file system
+       the DataNode stores the its blocks</description>
+  </property>
+  <property>
+    <name>dfs.permissions.supergroup</name>
+    <value>coupang</value>
+    <description>This parameter specifies the group that contains
+        HDFS super users</description>
+  </property>
+  <property>
+    <name>dfs.client.read.shortcircuit</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>dfs.domain.socket.path</name>
+    <value>/usr/hadoop/dn_socket</value>
+  </property>
+</configuration>
