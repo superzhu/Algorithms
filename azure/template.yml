@@ -1,0 +1,12 @@
+---
+- name: Create Virtual Machine with managed disk
+  hosts: localhost
+  vars:
+    rgName: plcm-custom-image
+  tasks:
+    - name: Create storage account using Azure resource manager template
+      azure_rm_deployment:
+        state: present
+        resource_group_name: plcm-custom-image
+        template_link: 'https://xyukxg4bnbbi2exhb0.blob.core.windows.net/json/storageaccount.json'
+        parameters_link: 'https://xyukxg4bnbbi2exhb0.blob.core.windows.net/json/storageaccount.parameters.json'
