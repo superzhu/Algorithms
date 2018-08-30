@@ -10,6 +10,7 @@
         name: "{{ rgName }}"
         location: "{{ location }}"
     - name: Create storage account using Azure resource manager template
+      register: armOutput
       azure_rm_deployment:
         state: present
         location: "{{ location }}"
@@ -17,3 +18,6 @@
         deployment_mode: incremental
         template: "{{ lookup('file','storageaccount.json') }}"
         parameters: "{{ (lookup('file','storageaccount.parameters.json') | from_json).parameters }}"
+    - name: get Azure Resource Manager Template output
+      debug:
+        msg: "{{ armOutput.deployment.id }}"
