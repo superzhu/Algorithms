@@ -1,0 +1,21 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "plcm"
+    },
+    "userImageRG": {
+      "value": "azhuzhi-custom-image"
+    },
+    "userImageName": {
+      "value": "ubuntu18-custom-image"
+    },
+    "sshKeyData": {
+      "value": "ssh public key"
+    },
+    "dnsLabelPrefix": {
+      "value": "vmfromcustomimage"
+    }
+  }
+}

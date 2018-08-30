@@ -1,0 +1,23 @@
+---
+- name: Create Virtual Machine with managed disk
+  hosts: localhost
+  vars:
+    rgName: azhuzhi-custom-image
+    location: southcentralus
+  tasks:
+    - name: Create resource group
+      azure_rm_resourcegroup:
+        name: "{{ rgName }}"
+        location: "{{ location }}"
+    - name: Create latest Ubuntu Virtual Machine  using Azure resource manager template
+      register: armOutput
+      azure_rm_deployment:
+        state: present
+        location: "{{ location }}"
+        resource_group_name: "{{ rgName }}"
+        deployment_mode: incremental
+        template: "{{ lookup('file','simplelinuxvm.json') }}"
+        parameters: "{{ (lookup('file','simplelinuxvm.parameters.json') | from_json).parameters }}"
+    - name: get Azure Resource Manager Template output
+      debug:
+        msg: "{{ armOutput }}"
