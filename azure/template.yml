@@ -1,0 +1,11 @@
+---
+- name: update json parameters
+  hosts: localhost
+  tasks:
+    - set_fact:
+        parameters: "{{ (lookup('file','simplelinuxvm.parameters.json') | from_json).parameters }}"
+
+    - name: display json file parameters
+      debug:
+        var: parameters
+

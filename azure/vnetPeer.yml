@@ -1,0 +1,61 @@
+---
+- name: Create Virtual Machine with managed disk
+  hosts: localhost
+  gather_facts: false
+  vars:
+    rgName: plcm-pdmsdev-service-dcos
+    rgName2: plcm-pdmsdev-service-infra
+    location: southcentralus
+  tasks:
+    - name: Get facts for one resource group one
+      register: vNet1
+      azure_rm_virtualnetwork_facts:
+        resource_group: "{{ rgName }}"
+        name: "dcos-vnet-pdmsdev-service"
+       
+    - name: facts for one virtual networks
+      debug:
+        msg: "{{ vNet1 }}"
+
+    - set_fact:
+        addressSpace: "{{ (vNet1.ansible_facts.azure_virtualnetworks 
+                | selectattr('id', 'search', lookup('vars','rgName') ) 
+                | map(attribute='properties.addressSpace.addressPrefixes') 
+                | list)[0][0] }}"
+        subnet: "{{ (vNet1.ansible_facts.azure_virtualnetworks 
+                | selectattr('id', 'search', lookup('vars','rgName') ) 
+                | map(attribute='properties.subnets') 
+                | list)[0][0]
+               }}"
+
+  # list)[0][0].properties.addressPrefix
+
+    - name: virtual network addressSpace adressPrefix output
+      debug:
+        msg: 
+           [ "addressSpace one {{ addressSpace }}, subnet one {{ subnet }}"
+           ]
+
+    - name: Get facts for one resource group one
+      register: vNet2
+      azure_rm_virtualnetwork_facts:
+        resource_group: "{{ rgName2 }}"
+
+    - set_fact:
+        addressSpace2: "{{ (vNet2.ansible_facts.azure_virtualnetworks 
+                | selectattr('id', 'search', lookup('vars','rgName2') ) 
+                | map(attribute='properties.addressSpace.addressPrefixes') 
+                | list)[0][0] }}"
+        subnet2: "{{ (vNet2.ansible_facts.azure_virtualnetworks 
+                | selectattr('id', 'search', lookup('vars','rgName2') ) 
+                | map(attribute='properties.subnets') 
+                | list)[0][0].properties.addressPrefix
+               }}"
+
+    - name: virtual network subnet adressPrefix output
+      debug:
+        msg: 
+           [ "addressSpace one {{ addressSpace }}, subnet one {{ subnet }}",
+             "addressSpace two {{ addressSpace2 }}, subnet two {{ subnet2 }}"
+           ]
+      

@@ -1,0 +1,9 @@
+#cloud-config
+# vim: syntax=yaml
+
+write_files:
+-  content: |
+       # My new /etc/sysconfig/samba file
+
+       SMBDOPTIONS="-D"
+   path: /home/plcm/test.txt
